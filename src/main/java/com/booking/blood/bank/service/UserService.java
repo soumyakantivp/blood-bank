@@ -1,5 +1,6 @@
 package com.booking.blood.bank.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class UserService {
 		booking_repo.save(newBooking);
 	}
 	
-	
+	public List<Users> getAllUsers() {
+		// TODO Auto-generated method stub
+		return repo.findAll();
+	}
 	
 }

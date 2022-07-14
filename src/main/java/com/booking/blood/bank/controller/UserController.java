@@ -36,6 +36,11 @@ public class UserController {
 		}
 		return false;
 	}
+	
+	@RequestMapping(value = "/user/get/all", method = RequestMethod.POST)
+	public List<Users> register() {
+		return service.getAllUsers();
+	}
 
 	@RequestMapping(value = "/user/blood/request", method = RequestMethod.POST)
 	public boolean requestBlood(@RequestBody Bookings booking) {
