@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="form">
+                <div class="left-side">
+                    <form class="sign-up s_form" action="/register" method="post">
+                        <div class="main">
+                            <div class="heading">
+                                <h2>Create Acccount</h2>
+                            </div>
+                            <div class="social"> <span><i class="fa fa-google"></i></span> <span><i
+                                        class="fa fa-facebook"></i></span> <span><i class="fa fa-twitter"></i></span>
+                                <span><i class="fa fa-dribbble"></i></span>
+                            </div>
+                            <div class="or">or use your e-mail for registration :</div>
+                            <div class="input-text"> <input type="text" placeholder="Enter your name" id="user-name"
+                                    require> </div>
+                            <div class="input-text"> <input type="text" placeholder="Enter your School/College name">
+                            </div>
+                            <div class="input-text">Role <select>
+                                    <option>user</option>
+                                    <option>owner</option>
+                                    <option>admin</option>
+                                </select> </div>
+                            <div class="buttons first"> <button class="sign_up_here">Sign up</button> </div>
+                        </div>
+                        <div class="main">
+                            <div class="heading">
+                                <h2>Create Account</h2>
+                            </div>
+                            <div class="social"> <span><i class="fa fa-google"></i></span> <span><i
+                                        class="fa fa-facebook"></i></span> <span><i class="fa fa-twitter"></i></span>
+                                <span><i class="fa fa-dribbble"></i></span>
+                            </div>
+                            <div class="or">or use your e-mail for registration :</div>
+                            <div class="input-text"> <input name="name" type="text" placeholder="Enter your name" require> </div>
+                            <div class="input-text"> <input name="password" type="password" placeholder="Enter your password"
+                                    id="password-input" require> <i class="fa fa-eye-slash passcode"></i> </div>
+                            <div class="input-text"> <input name="confirm" type="password" placeholder="Confirm password"
+                                    id="password-input1" require> <i class="fa fa-eye-slash passcode1"></i> </div>
+                            <div class="terms"> <span><i class="fa fa-check d-none"></i></span>
+                                <p>I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+                            </div>
+                            <div class="buttons"> <button type="submit" class="submit_here">Submit</button> </div>
+                        </div>
+                        <div class="main active">
+                            <div class="heading">
+                                <h2>Congratulations</h2>
+                            </div>
+                            <div class="social"> <span><i class="fa fa-google"></i></span> <span><i
+                                        class="fa fa-facebook"></i></span> <span><i class="fa fa-twitter"></i></span>
+                                <span><i class="fa fa-dribbble"></i></span>
+                            </div> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                            </svg>
+                            <div class="final-submit">
+                                <p>Thanks Mr./Mrs. <span id="shown-name" th:text="${name}"></span> for signing in with us we will contact
+                                    you soon</p>
+                            </div>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                            <a class="btn btn-dark btn-xl" href="/"style="margin-bottom: 10px;" >Back to Home</a>
+                            </div>
+                            
+                        </div>
+                    </form>
+                    <div class="sign-in s_form d-none">
+                        <div class="main_login active">
+                            <div class="heading">
+                                <h2>Login Now</h2>
+                            </div>
+                            <div class="social"> <span><i class="fa fa-google"></i></span> <span><i
+                                        class="fa fa-facebook"></i></span> <span><i class="fa fa-twitter"></i></span>
+                                <span><i class="fa fa-dribbble"></i></span>
+                            </div>
+                            <div class="or">or use your e-mail for registration :</div>
+                            <div class="input-text"> <input type="text" placeholder="Enter your E-mail" require> </div>
+                            <div class="input-text"> <input type="password" placeholder="Enter your password"
+                                    id="password-input-login" require> <i class="fa fa-eye-slash passcode1"></i> </div>
+                            <div class="terms"> <span><i class="fa fa-check d-none"></i></span>
+                                <p>Remember password</p>
+                            </div>
+                            <div class="buttons"> <button class="signin_submit">Sign in</button> <button
+                                    class="sign_up_back_here">Sign up</button> </div>
+                        </div>
+                        <div class="main_login">
+                            <div class="heading">
+                                <h2>Congratulations</h2>
+                            </div>
+                            <div class="social"> <span><i class="fa fa-google"></i></span> <span><i
+                                        class="fa fa-facebook"></i></span> <span><i class="fa fa-twitter"></i></span>
+                                <span><i class="fa fa-dribbble"></i></span>
+                            </div> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                            </svg>
+                            <div class="final-submit">
+                                <p>Thanks Mr./Mrs. <span id="shown-name"></span> for signing in with us we will contact
+                                    you soon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div class="cover_image"> <img src="https://imgur.com/TTmJuFD.jpg"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #eee
+        }
+
+        .container .card {
+            height: 500px;
+            width: 800px;
+            background-color: #fff;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden
+        }
+
+        .container .card .form {
+            width: 100%;
+            height: 100%;
+            display: flex
+        }
+
+        .container .card .left-side {
+            width: 60%;
+            background-color: #fff;
+            height: 100%
+        }
+
+        .sign-up {}
+
+        .main {
+            display: none
+        }
+
+        .main_login {
+            display: none
+        }
+
+        .active {
+            display: block !important
+        }
+
+        .d-none {
+            display: none
+        }
+
+        .heading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px
+        }
+
+        .heading h2 {
+            color: red;
+            font-weight: 900
+        }
+
+        .social {
+            display: flex;
+            justify-content: center
+        }
+
+        .social span {
+            height: 30px;
+            width: 30px;
+            border: 1px solid black;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 3px;
+            cursor: pointer
+        }
+
+        .social span i {
+            color: #000;
+            font-size: 15px;
+            text-align: center;
+            margin-top: 3px
+        }
+
+        .or {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 800
+        }
+
+        .input-text {
+            padding: 0 40px;
+            margin: 20px 0;
+            position: relative
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+            height: 40px;
+            border: none;
+            outline: 0;
+            border: 1px solid #c6d9df;
+            background-color: #f7f8f9;
+            border-radius: 5px
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+            height: 40px;
+            border: none;
+            outline: 0;
+            border: 1px solid #c6d9df;
+            background-color: #f7f8f9;
+            border-radius: 5px;
+            padding-right: 30px
+        }
+
+        select {
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+            height: 40px;
+            border: none;
+            outline: 0;
+            border: 1px solid #c6d9df;
+            background-color: #f7f8f9;
+            border-radius: 5px
+        }
+
+        .fa-eye-slash {
+            position: absolute;
+            top: 13px;
+            right: 50px;
+            cursor: pointer
+        }
+
+        .fa-eye {
+            position: absolute;
+            top: 13px;
+            right: 50px;
+            cursor: pointer
+        }
+
+        .terms {
+            position: relative;
+            display: flex;
+            padding-left: 40px
+        }
+
+        .terms span {
+            margin-right: 5px;
+            margin-top: -2px;
+            height: 20px;
+            width: 20px;
+            background-color: red;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer
+        }
+
+        .terms span i {
+            color: #fff
+        }
+
+        .terms p {
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        .terms p a {
+            color: red;
+            text-decoration: none
+        }
+
+        .buttons {
+            margin-top: 30px;
+            padding: 0 40px;
+            display: flex;
+            gap: 20px
+        }
+
+        .buttons button {
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            outline: 0;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .buttons button:nth-child(1) {
+            background-color: red;
+            color: #fff
+        }
+
+        .buttons button:nth-child(2) {
+            background-color: #fff;
+            color: red;
+            border: 1px solid red
+        }
+
+        .first {
+            margin-top: 70px
+        }
+
+        .final-submit {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 30px
+        }
+
+        .final-submit p {
+            font-size: 14px;
+            font-weight: 800
+        }
+
+        .warning {
+            border: 1px solid red !important
+        }
+
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #7ac142;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
+        }
+
+        .checkmark {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            margin: 10% auto;
+            box-shadow: inset 0px 0px 0px #7ac142;
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0
+            }
+        }
+
+        @keyframes scale {
+
+            0%,
+            100% {
+                transform: none
+            }
+
+            50% {
+                transform: scale3d(1.1, 1.1, 1)
+            }
+        }
+
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 30px #7ac142
+            }
+        }
+
+        .container .card .right-side {
+            width: 40%;
+            background-color: #000;
+            height: 100%
+        }
+
+        .cover_image {
+            position: relative
+        }
+
+        .cover_image img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%
+        }
+
+        @media (max-width:750px) {
+            .container .card {
+                max-width: 350px
+            }
+
+            .container .card .right-side {
+                display: none
+            }
+
+            .container .card .left-side {
+                width: 100%
+            }
+        }
+    </style>
+
+    <script>
+        var signin_here = document.querySelector(".sign_in_here");
+        var main_form_login = document.querySelectorAll(".main_login");
+        var sform = document.querySelectorAll(".s_form");
+
+
+        var signup_here = document.querySelector(".sign_up_here");
+        var main_form = document.querySelectorAll(".main");
+        var submit = document.querySelector(".submit_here");
+        var user_name = document.querySelector("#user-name");
+        var shown_name = document.querySelector("#shown-name");
+        let forumnumber = 0;
+        signup_here.addEventListener('click', function () {
+            if (!validateform()) {
+                return false;
+            }
+            forumnumber++;
+            updateforum();
+
+
+        });
+
+
+        submit.addEventListener('click', function () {
+            if (!validateform()) {
+                return false;
+            }
+
+            shown_name.innerHTML = user_name.value;
+            forumnumber++;
+            updateforum();
+
+        });
+
+        function updateforum() {
+            main_form.forEach(function (update_forum_number) {
+                update_forum_number.classList.remove('active');
+
+            });
+            main_form[forumnumber].classList.add('active');
+        }
+
+        function validateform() {
+            var validatesignupinputs = document.querySelectorAll(".main.active input");
+            validate = true;
+            validatesignupinputs.forEach(function (val_in) {
+                val_in.classList.remove('warning');
+                if (val_in.hasAttribute('require')) {
+                    if (val_in.value.length == 0) {
+                        validate = false;
+                        val_in.classList.add('warning');
+                    }
+                }
+            });
+            return validate;
+        }
+
+
+
+
+        var click_eye = document.querySelector(".passcode");
+        var eye = document.querySelector(".passcode");
+        var password_input = document.querySelector("#password-input")
+
+        var click_eye1 = document.querySelector(".passcode1");
+        var eye1 = document.querySelector(".passcode1");
+        var password_input1 = document.querySelector("#password-input1")
+
+        click_eye.addEventListener('click', function () {
+
+            if (password_input.type == 'password') {
+                password_input.type = "text";
+                eye.classList.remove('fa-eye-slash');
+                eye.classList.add('fa-eye');
+                password_input.classList.add('warning');
+
+            }
+            else {
+                password_input.type = "password";
+                eye.classList.add('fa-eye-slash');
+                eye.classList.remove('fa-eye');
+                password_input.classList.remove('warning');
+
+            }
+        });
+
+
+        click_eye1.addEventListener('click', function () {
+
+            if (password_input1.type == 'password') {
+                password_input1.type = "text";
+                eye1.classList.remove('fa-eye-slash');
+                eye1.classList.add('fa-eye');
+                password_input1.classList.add('warning');
+
+            }
+            else {
+                password_input1.type = "password";
+                eye1.classList.add('fa-eye-slash');
+                eye1.classList.remove('fa-eye');
+                password_input1.classList.remove('warning');
+
+            }
+        });
+
+        var tickspan = document.querySelector(".terms span")
+        var tick = document.querySelector(".terms span i")
+        tickspan.addEventListener('click', function () {
+            tick.classList.toggle('d-none');
+        });
+
+
+
+        signin_here.addEventListener('click', function () {
+            sform.forEach(function (s_form) {
+                s_form.classList.toggle('d-none');
+            });
+        });
+
+        var sign_up_back_here = document.querySelector(".sign_up_back_here");
+        sign_up_back_here.addEventListener('click', function () {
+            sform.forEach(function (s_form) {
+                s_form.classList.toggle('d-none');
+            });
+
+        });
+
+
+        let signinnumber = 0;
+        var signin_submit = document.querySelector(".signin_submit");
+        signin_submit.addEventListener('click', function () {
+
+            if (!validateform_login()) return false;
+            signinnumber++;
+            update_signin();
+        });
+
+
+        function update_signin() {
+            main_form_login.forEach(function (update_forum_number) {
+                update_forum_number.classList.remove('active');
+            });
+            main_form_login[signinnumber].classList.add('active');
+        }
+
+
+
+
+        function validateform_login() {
+            var validatesigininputs = document.querySelectorAll(".main_login.active input");
+            console.log(validatesigininputs);
+            validate_signin = true;
+
+            validatesigininputs.forEach(function (valid_in) {
+                valid_in.classList.remove('warning');
+                if (valid_in.hasAttribute('require')) {
+                    if (valid_in.value.length == 0) {
+                        validate_signin = false;
+                        valid_in.classList.add('warning');
+                    }
+                }
+            });
+            return validate_signin;
+        }
+    </script>
+</body>
+
+</html>
