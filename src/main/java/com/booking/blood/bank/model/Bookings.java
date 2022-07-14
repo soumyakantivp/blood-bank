@@ -11,7 +11,7 @@ public class Bookings {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String type;
+	private String type; //group
 	private double amount;
 	@ManyToOne
 	private Bloodbank bloodbank;
