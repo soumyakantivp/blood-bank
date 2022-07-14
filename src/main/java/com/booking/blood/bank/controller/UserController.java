@@ -3,6 +3,7 @@ package com.booking.blood.bank.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.booking.blood.bank.dao.BookingsRepo;
 import com.booking.blood.bank.model.Bookings;
 import com.booking.blood.bank.model.Users;
+import com.booking.blood.bank.security.CustomUserDetails;
 import com.booking.blood.bank.service.BloodBankService;
+import com.booking.blood.bank.service.BookingService;
 import com.booking.blood.bank.service.UserService;
 
 @RestController
@@ -26,7 +28,7 @@ public class UserController {
 	BloodBankService hall_service;
 
 	@Autowired
-	BookingsRepo bookings_repo;
+	BookingService bookings_service;
 
 	@RequestMapping(value = "/user/register", method = RequestMethod.POST)
 	public boolean register(@RequestParam("email") String email, @RequestParam("password") String password) {
@@ -36,7 +38,7 @@ public class UserController {
 		}
 		return false;
 	}
-	
+
 	@RequestMapping(value = "/user/get/all", method = RequestMethod.POST)
 	public List<Users> register() {
 		return service.getAllUsers();
@@ -46,7 +48,7 @@ public class UserController {
 	public boolean requestBlood(@RequestBody Bookings booking) {
 		// System.out.println(id);
 		try {
-			bookings_repo.save(booking);
+			bookings_service.createNewBooking(booking);
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -56,14 +58,28 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/blood/request/all", method = RequestMethod.GET)
-	public List<Bookings> getAllBloodRequests() {
-		try {
-			return bookings_repo.findAll();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public List<Bookings> getUserBloodRequests(ModelMap model) {
+		int id = getLoggedInUserId(model);
+		if(id != -1) {
+			Users user = service.getUserById(id);
+			if(user!=null) {
+				return user.getBookings();
+			}else {
+				return null;
+			}
+		}else {
 			return null;
 		}
+	}
+	
+	private int getLoggedInUserId(ModelMap model) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof CustomUserDetails) {
+			return ((CustomUserDetails) principal).getId();
+		}
+		System.out.println("loggedin userid: " + principal.toString());
+		return -1;
 	}
 	/*
 	 * @RequestMapping(value = "/book/pay",method=RequestMethod.GET) public String

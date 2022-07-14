@@ -38,5 +38,16 @@ public class UserService {
 		// TODO Auto-generated method stub
 		return repo.findAll();
 	}
+
+	public Users getUserById(int id) {
+		// TODO Auto-generated method stub
+		try {
+			return repo.findById(id).get();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 }

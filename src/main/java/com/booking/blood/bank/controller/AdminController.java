@@ -1,5 +1,6 @@
 package com.booking.blood.bank.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.booking.blood.bank.model.BloodStoreMap;
 import com.booking.blood.bank.model.Bloodbank;
+import com.booking.blood.bank.model.Bookings;
 import com.booking.blood.bank.security.CustomUserDetails;
 import com.booking.blood.bank.service.BloodBankService;
+import com.booking.blood.bank.service.BookingService;
 
 @RestController
 public class AdminController {
 	@Autowired
 	BloodBankService BloodBank_service;
 
+	@Autowired
+	BookingService bookings_service;
+	
 	@RequestMapping(value = "/admin/bloodbank/add", method = RequestMethod.POST)
 	public Bloodbank createNewBloodBank(@RequestBody Bloodbank newBloodBank) {
 		BloodBank_service.addBloodBank(newBloodBank);
@@ -51,7 +57,12 @@ public class AdminController {
 		}
 		return null;
 	}
-
+	
+	@RequestMapping(value = "/admin/blood/request/all", method = RequestMethod.GET)
+	public List<Bookings> getAllBloodRequests() {
+		return bookings_service.getAllBookings();
+	}
+	
 	private int getLoggedInUserId(ModelMap model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
