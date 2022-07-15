@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Bloodbank {
 	private String address;
 	@Embedded
 	private BloodStoreMap bloodStoreMap;
-	@OneToMany(mappedBy="bloodbank")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="bloodbank")
 	private List<Bookings> bookings;
 	
 	public Bloodbank() {

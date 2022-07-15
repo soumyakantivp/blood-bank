@@ -2,14 +2,12 @@ package com.booking.blood.bank.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity(name="Users")
 public class Users {
@@ -22,7 +20,7 @@ public class Users {
 	
 	private String password;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="user")
 	private List<Bookings> bookings;
 	
 	private boolean active;

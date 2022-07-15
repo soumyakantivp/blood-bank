@@ -59,7 +59,7 @@ public class UserController {
 
 	@RequestMapping(value = "/user/blood/request/all", method = RequestMethod.GET)
 	public List<Bookings> getUserBloodRequests(ModelMap model) {
-		int id = getLoggedInUserId(model);
+		int id = 1;
 		if(id != -1) {
 			Users user = service.getUserById(id);
 			if(user!=null) {

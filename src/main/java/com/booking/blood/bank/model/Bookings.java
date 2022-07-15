@@ -1,21 +1,26 @@
 package com.booking.blood.bank.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-@Entity
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Entity(name="Bookings")
 public class Bookings {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String type; //group
 	private double amount;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private Bloodbank bloodbank;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private Users user;
 	private double price;
 	private String status;
@@ -64,7 +69,6 @@ public class Bookings {
 		this.amount = amount;
 	}
 
-
 	public Bloodbank getBloodbank() {
 		return bloodbank;
 	}
@@ -73,7 +77,6 @@ public class Bookings {
 	public void setBloodbank(Bloodbank bloodbank) {
 		this.bloodbank = bloodbank;
 	}
-
 
 	public Users getUser() {
 		return user;
