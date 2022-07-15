@@ -63,6 +63,11 @@ public class AdminController {
 		return bookings_service.getAllBookings();
 	}
 	
+	@RequestMapping(value = "/admin/blood/request/approve/{id}", method = RequestMethod.GET)
+	public boolean createNewBloodBank(@PathVariable("id") int id) {
+		return bookings_service.approveBloodRequest(id);
+	}
+	
 	private int getLoggedInUserId(ModelMap model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 

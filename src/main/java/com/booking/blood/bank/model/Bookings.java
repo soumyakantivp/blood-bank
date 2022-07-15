@@ -22,6 +22,10 @@ public class Bookings {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private Users user;
+	private String useremail;
+	private String useraddress;
+	private String bloodbankname;
+	private String bloodbankaddress;
 	private double price;
 	private String status;
 	
@@ -39,9 +43,45 @@ public class Bookings {
 		this.user = user;
 		this.price = price;
 		this.status = status;
+		this.bloodbankname = bloodbank.getName();
+		this.bloodbankaddress = bloodbank.getAddress();
+		this.useremail = user.getUsername();
+		this.useraddress = user.getAddress();
 	}
 
 	
+	public String getUseremail() {
+		return useremail;
+	}
+
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
+	}
+
+	public String getUseraddress() {
+		return useraddress;
+	}
+
+	public void setUseraddress(String useraddress) {
+		this.useraddress = useraddress;
+	}
+
+	public String getBloodbankname() {
+		return bloodbankname;
+	}
+
+	public void setBloodbankname(String bloodbankname) {
+		this.bloodbankname = bloodbankname;
+	}
+
+	public String getBloodbankaddress() {
+		return bloodbankaddress;
+	}
+
+	public void setBloodbankaddress(String bloodbankaddress) {
+		this.bloodbankaddress = bloodbankaddress;
+	}
+
 	public String getType() {
 		return type;
 	}

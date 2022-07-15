@@ -20,6 +20,8 @@ public class Users {
 	
 	private String password;
 	
+	private String address;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="user")
 	private List<Bookings> bookings;
 	
@@ -33,14 +35,18 @@ public class Users {
 		super();
 	}
 
-	public Users(String username, String password, boolean active, String roles) {
+
+	public Users(String username, String password, String address, boolean active, String roles) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.address = address;
+		this.bookings = null;
 		this.active = active;
 		this.roles = roles;
 	}
-	
+
+
 	public List<Bookings> getBookings() {
 		return bookings;
 	}
@@ -72,6 +78,16 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 
 	public boolean isActive() {
 		return active;

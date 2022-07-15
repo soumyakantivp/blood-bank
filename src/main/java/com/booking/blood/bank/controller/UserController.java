@@ -30,9 +30,10 @@ public class UserController {
 	@Autowired
 	BookingService bookings_service;
 
+
 	@RequestMapping(value = "/user/register", method = RequestMethod.POST)
-	public boolean register(@RequestParam("email") String email, @RequestParam("password") String password) {
-		Users newUser = new Users(email, password, true, "USER");
+	public boolean register(@RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("address") String address) {
+		Users newUser = new Users(email, password, address, true, "USER");
 		if (service.addUser(newUser)) {
 			return true;
 		}
@@ -48,6 +49,7 @@ public class UserController {
 	public boolean requestBlood(@RequestBody Bookings booking) {
 		// System.out.println(id);
 		try {
+			booking.setStatus("requested");
 			bookings_service.createNewBooking(booking);
 			return true;
 		} catch (Exception e) {
