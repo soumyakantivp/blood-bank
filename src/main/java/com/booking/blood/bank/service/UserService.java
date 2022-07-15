@@ -22,7 +22,7 @@ public class UserService {
 	
 	public boolean addUser(Users newUser) {
 		// TODO Auto-generated method stub
-		if(repo.findByusername(newUser.getUsername()).equals(Optional.empty())) {
+		if(repo.findByUsername(newUser.getUsername()).equals(Optional.empty())) {
 			repo.save(newUser);
 			return true;
 		}
@@ -47,6 +47,17 @@ public class UserService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	public int findUserByEmailId(String email) {
+		// TODO Auto-generated method stub
+		try {
+			return repo.findByUsername(email).get().getId();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
 		}
 	}
 	

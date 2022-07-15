@@ -21,6 +21,11 @@ public class BookingService {
 	
 	public void createNewBooking(Bookings booking) {
 		// TODO Auto-generated method stub
+		booking.setUseraddress(booking.getUser().getAddress());
+		booking.setUseremail(booking.getUser().getUsername());
+		booking.setBloodbankaddress(booking.getBloodbank().getAddress());
+		booking.setBloodbankname(booking.getBloodbank().getName());
+		booking.setStatus("requested");
 		repo.save(booking);
 	}
 

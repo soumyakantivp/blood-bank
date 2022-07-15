@@ -49,7 +49,6 @@ public class UserController {
 	public boolean requestBlood(@RequestBody Bookings booking) {
 		// System.out.println(id);
 		try {
-			booking.setStatus("requested");
 			bookings_service.createNewBooking(booking);
 			return true;
 		} catch (Exception e) {
@@ -60,8 +59,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/blood/request/all", method = RequestMethod.GET)
-	public List<Bookings> getUserBloodRequests(ModelMap model) {
-		int id = 1;
+	public List<Bookings> getUserBloodRequests(@RequestParam String email) {
+		int id = service.findUserByEmailId(email);
 		if(id != -1) {
 			Users user = service.getUserById(id);
 			if(user!=null) {

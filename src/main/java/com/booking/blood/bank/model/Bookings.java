@@ -150,6 +150,10 @@ public class Bookings {
 	@Override
 	public String toString() {
 		return "Bookings [id=" + id + ", type=" + type + ", amount=" + amount + ", bloodbank=" + bloodbank + ", user="
-				+ user + ", price=" + price + ", status=" + status + "]";
+				+ user + ", useremail=" + useremail + ", useraddress=" + useraddress + ", bloodbankname="
+				+ bloodbankname + ", bloodbankaddress=" + bloodbankaddress + ", price=" + price + ", status=" + status
+				+ "]";
 	}
+
+	
 }
