@@ -3,17 +3,19 @@ package com.booking.blood.bank.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.booking.blood.bank.dao.BloodBankRepo;
 import com.booking.blood.bank.dao.BookingsRepo;
+import com.booking.blood.bank.dao.UserRepo;
 import com.booking.blood.bank.model.BloodPriceMap;
 import com.booking.blood.bank.model.BloodStoreMap;
 import com.booking.blood.bank.model.Bloodbank;
 import com.booking.blood.bank.model.Bookings;
+import com.booking.blood.bank.model.Users;
 
 @Service
 public class BookingService {
@@ -21,10 +23,26 @@ public class BookingService {
 	BookingsRepo booking_repo;
 
 	@Autowired
+	UserRepo user_repo;
+	
+	@Autowired
 	BloodBankRepo bloodbank_repo;
 	
 	@Autowired
 	BloodPriceMap bloodPriceMap;
+	
+
+		
+	private void setPrice() {
+		bloodPriceMap.setAplus(1000);
+		bloodPriceMap.setAminus(1200);
+		bloodPriceMap.setBplus(1050);
+		bloodPriceMap.setBminus(1250);
+		bloodPriceMap.setAbplus(1300);
+		bloodPriceMap.setAbminus(1500);
+		bloodPriceMap.setOplus(800);
+		bloodPriceMap.setOminus(1000);
+	}
 
 	public List<Bookings> getAllBookings() {
 		// TODO Auto-generated method stub
@@ -33,11 +51,23 @@ public class BookingService {
 
 	public boolean createNewBooking(Bookings booking) {
 		// TODO Auto-generated method stub
-		booking.setUseraddress(booking.getUser().getAddress());
-		booking.setUseremail(booking.getUser().getUsername());
-		booking.setBloodbankaddress(booking.getBloodbank().getAddress());
-		booking.setBloodbankname(booking.getBloodbank().getName());
+		setPrice();
+		Optional<Users> user = user_repo.findById(booking.getUser().getId());
+		if(user.isEmpty())
+			return false;
+		
+		booking.setUseraddress(user.get().getAddress());
+		booking.setUseremail(user.get().getUsername());
+		
+		Optional<Bloodbank> bloodbank = bloodbank_repo.findById(booking.getBloodbank().getId());
+		if(bloodbank.isEmpty())
+			return false;
+		booking.setBloodbankaddress(bloodbank.get().getAddress());
+		booking.setBloodbankname(bloodbank.get().getName());
+		
 		booking.setStatus("requested");
+		
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		booking.setOrderdate(formatter.format(date));

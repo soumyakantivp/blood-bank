@@ -13,6 +13,7 @@ public class BloodPriceMap {
 	private double bminus;
 	private double abplus;
 	private double abminus;
+	
 	public double getOplus() {
 		return oplus;
 	}
@@ -61,7 +62,7 @@ public class BloodPriceMap {
 	public void setAbminus(double abminus) {
 		this.abminus = abminus;
 	}
-	//@Autowired
+
 	public BloodPriceMap(double oplus, double ominus, double aplus, double aminus, double bplus, double bminus,
 			double abplus, double abminus) {
 		super();

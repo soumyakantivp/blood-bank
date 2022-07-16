@@ -3,6 +3,7 @@ package com.booking.blood.bank;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -17,8 +18,9 @@ public class BloodBankApplication implements WebMvcConfigurer{
 	
 	@Bean
 	public BloodPriceMap initializeBloodPriceMap() {
-		return new BloodPriceMap(100, 120, 110, 97, 200, 245, 266, 214);
+		return new BloodPriceMap();
 	}
+	
 	
 	@Override
     public void addCorsMappings(CorsRegistry registry) {
