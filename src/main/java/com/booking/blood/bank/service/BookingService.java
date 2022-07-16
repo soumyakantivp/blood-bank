@@ -52,18 +52,18 @@ public class BookingService {
 	public boolean createNewBooking(Bookings booking) {
 		// TODO Auto-generated method stub
 		setPrice();
-		Optional<Users> user = user_repo.findById(booking.getUser().getId());
-		if(user.isEmpty())
+		Users user = user_repo.findById(booking.getUser().getId()).get();
+		if(user == null)
 			return false;
 		
-		booking.setUseraddress(user.get().getAddress());
-		booking.setUseremail(user.get().getUsername());
+		booking.setUseraddress(user.getAddress());
+		booking.setUseremail(user.getUsername());
 		
-		Optional<Bloodbank> bloodbank = bloodbank_repo.findById(booking.getBloodbank().getId());
-		if(bloodbank.isEmpty())
+		Bloodbank bloodbank = bloodbank_repo.findById(booking.getBloodbank().getId()).get();
+		if(bloodbank == null)
 			return false;
-		booking.setBloodbankaddress(bloodbank.get().getAddress());
-		booking.setBloodbankname(bloodbank.get().getName());
+		booking.setBloodbankaddress(bloodbank.getAddress());
+		booking.setBloodbankname(bloodbank.getName());
 		
 		booking.setStatus("requested");
 		
