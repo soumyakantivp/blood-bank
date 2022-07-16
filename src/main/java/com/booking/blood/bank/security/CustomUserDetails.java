@@ -30,9 +30,7 @@ public class CustomUserDetails implements UserDetails {
 		this.id = user.getId();
 		this.authotities = Stream.of(user.getRoles().split(",")).map(x->{
 			return new SimpleGrantedAuthority(x);
-		}).collect(Collectors.toList());
-		
-		
+		}).collect(Collectors.toList());	
 	}
 
 	

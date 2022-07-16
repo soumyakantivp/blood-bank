@@ -28,7 +28,8 @@ public class Bookings {
 	private String bloodbankaddress;
 	private double price;
 	private String status;
-	
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	private String orderdate;
 	
 	public Bookings() {
 		super();
@@ -50,6 +51,14 @@ public class Bookings {
 	}
 
 	
+	public String getOrderdate() {
+		return orderdate;
+	}
+
+	public void setOrderdate(String orderdate) {
+		this.orderdate = orderdate;
+	}
+
 	public String getUseremail() {
 		return useremail;
 	}

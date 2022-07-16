@@ -25,7 +25,7 @@ public class UserController {
 	UserService service;
 
 	@Autowired
-	BloodBankService hall_service;
+	BloodBankService bloodbank_service;
 
 	@Autowired
 	BookingService bookings_service;
@@ -49,8 +49,7 @@ public class UserController {
 	public boolean requestBlood(@RequestBody Bookings booking) {
 		// System.out.println(id);
 		try {
-			bookings_service.createNewBooking(booking);
-			return true;
+			return bookings_service.createNewBooking(booking);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
