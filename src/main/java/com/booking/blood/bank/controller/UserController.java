@@ -32,12 +32,23 @@ public class UserController {
 
 
 	@RequestMapping(value = "/user/register", method = RequestMethod.POST)
-	public boolean register(@RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("address") String address) {
-		Users newUser = new Users(email, password, address, true, "USER");
+	public int register(@RequestBody Users user) {
+		if(service.getUserByEmail(user.getUsername()) != null)
+			return 400;
+		Users newUser = new Users(user.getUsername(), user.getPassword(), user.getAddress(), true, "USER");
 		if (service.addUser(newUser)) {
-			return true;
+			return 200;
 		}
-		return false;
+		return 401;
+	}
+	
+	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
+	public Users login(@RequestBody Users user) {
+		Users registeredUser = service.getUserByEmail(user.getUsername());
+		if(registeredUser.getPassword().equalsIgnoreCase(user.getPassword())) {
+			return registeredUser;
+		}
+		return null;
 	}
 
 	@RequestMapping(value = "/user/get/all", method = RequestMethod.POST)

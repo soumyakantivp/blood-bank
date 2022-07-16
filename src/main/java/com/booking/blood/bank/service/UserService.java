@@ -60,5 +60,16 @@ public class UserService {
 			return -1;
 		}
 	}
+
+	public Users getUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		try {
+			return repo.findByUsername(email).get();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 }
