@@ -38,16 +38,21 @@ public class AdminController {
 		return newBloodBank;
 	}
 
-	@RequestMapping(value = "/admin/bloodbank/update/{bloodBank_id}", method = RequestMethod.POST)
-	public Bloodbank updateBloodBank(@PathVariable("bloodBank_id") int bloodBank_id,
-			@RequestBody Bloodbank updatedBloodBank) {
-		Optional<Bloodbank> bloodBank = BloodBank_service.getBloodBankById(bloodBank_id);
+	@RequestMapping(value = "/admin/bloodbank/update", method = RequestMethod.POST)
+	public boolean updateBloodBank(@RequestBody Bloodbank updatedBloodBank) {
+		try {
+			int bloodBank_id = updatedBloodBank.getId();
+			Optional<Bloodbank> bloodBank = BloodBank_service.getBloodBankById(bloodBank_id);
 
-		if (bloodBank.isPresent()) {
-			BloodBank_service.updateBloodBank(bloodBank_id, updatedBloodBank);
-			return updatedBloodBank;
+			if (bloodBank.isPresent()) {
+				BloodBank_service.updateBloodBank(bloodBank_id, updatedBloodBank);
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return null;
+		return false;
 	}
 	
 
