@@ -10,18 +10,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.booking.blood.bank.model.BloodStoreMap;
 import com.booking.blood.bank.model.Bloodbank;
 import com.booking.blood.bank.model.Bookings;
+import com.booking.blood.bank.model.Users;
 import com.booking.blood.bank.security.CustomUserDetails;
 import com.booking.blood.bank.service.BloodBankService;
 import com.booking.blood.bank.service.BookingService;
+import com.booking.blood.bank.service.UserService;
 
 @RestController
 public class AdminController {
+	@Autowired
+	UserService service;
+	
 	@Autowired
 	BloodBankService BloodBank_service;
 
@@ -35,7 +38,7 @@ public class AdminController {
 		return newBloodBank;
 	}
 
-	@RequestMapping(value = "/admin/bloodbank/update/{bloodBank_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/bloodbank/update/{bloodBank_id}", method = RequestMethod.POST)
 	public Bloodbank updateBloodBank(@PathVariable("bloodBank_id") int bloodBank_id,
 			@RequestBody Bloodbank updatedBloodBank) {
 		Optional<Bloodbank> bloodBank = BloodBank_service.getBloodBankById(bloodBank_id);
@@ -46,8 +49,9 @@ public class AdminController {
 		}
 		return null;
 	}
+	
 
-	@RequestMapping(value = "/admin/bloodbank/delete/{bloodBank_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/bloodbank/delete/{bloodBank_id}", method = RequestMethod.POST)
 	public Bloodbank deleteBloodBank(@PathVariable int bloodBank_id) {
 		Optional<Bloodbank> bloodBank = BloodBank_service.getBloodBankById(bloodBank_id);
 
@@ -66,6 +70,17 @@ public class AdminController {
 	@RequestMapping(value = "/admin/blood/request/approve/{id}", method = RequestMethod.GET)
 	public boolean createNewBloodBank(@PathVariable("id") int id) {
 		return bookings_service.approveBloodRequest(id);
+	}
+	
+	@RequestMapping(value = "/admin/register", method = RequestMethod.POST)
+	public int register(@RequestBody Users user) {
+		if(service.getUserByEmail(user.getUsername()) != null)
+			return 400;
+		Users newUser = new Users(user.getUsername(), user.getPassword(), user.getAddress(), true, "ADMIN");
+		if (service.addUser(newUser)) {
+			return 200;
+		}
+		return 401;
 	}
 	
 	private int getLoggedInUserId(ModelMap model) {
